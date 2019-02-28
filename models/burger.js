@@ -9,12 +9,12 @@ var burger = {
   },
   // The variables cols and vals are arrays.
   createOne: function(cols, vals, cb) {
-    orm.create(cols, vals, function(res) {
+    orm.createOne(cols, vals, function(res) {
       cb(res);
     });
   },
   updateOne: function(objColVals, condition, cb) {
-    orm.update(objColVals, condition, function(res) {
+    orm.updateOne(objColVals, condition, function(res) {
       cb(res);
     });
   }

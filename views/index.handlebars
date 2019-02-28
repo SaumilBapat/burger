@@ -1,9 +1,54 @@
-<h1>Burgers!</h1>
-<ul>
-    {{#each burgers}}
-    <li>{{this.burger_name}}</li>
-    {{/each}}
-</ul>
-<form class="create-form">
-    <button type="submit">Eat Burgers</button>
-</form>
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Eat-Da-Burger!</h1>
+      <p class="lead">This is a restaurant app that lets users input the names of burgers they'd like to eat.</p>
+    </div>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Available Burgers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each burgers}}
+        {{#unless devoured}}
+        <tr>
+          <td>
+            {{this.burger_name}}
+            <button class="burgers" data-id="{{id}}" data-newsleep="{{sleep}}">
+              Eat!
+            </button>
+          </td>
+        </tr>
+        {{/unless}}
+        {{/each}}
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Eaten Burgers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each burgers}}
+        {{#if devoured}}
+        <tr>
+          <td>{{this.burger_name}}</td>
+        </tr>
+        {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <form class="add-burger-form bg-light">
+    <div class="form-group">
+      <label for="burgerName">Burger Name</label>
+      <input type="text" class="form-control" id="burgerName" aria-describedby="burgerName" placeholder="Cheeseburger">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
