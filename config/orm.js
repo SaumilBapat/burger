@@ -44,6 +44,7 @@ function objToSql(ob) {
 var orm = {
   selectAll: function(cb) {
     var queryString = "SELECT * FROM " + TABLE_NAME + ";";
+    console.log("process.env.DATABASE_URL: " + process.env.DATABASE_URL);
     console.log("queryString" + queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
