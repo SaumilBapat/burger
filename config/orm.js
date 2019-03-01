@@ -42,11 +42,11 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
+  // Query all burgers
   selectAll: function(cb) {
     var queryString = "SELECT * FROM " + TABLE_NAME + ";";
     console.log("process.env.DATABASE_URL: " + process.env.DATABASE_URL);
     console.log("queryString" + queryString);
-    cb("test");
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -54,41 +54,37 @@ var orm = {
       cb(result);
     });
   },
+
+  // An example of objColVals would be {name: panther, sleepy: true}
   createOne: function(cols, vals, cb) {
     var queryString = "INSERT INTO " + TABLE_NAME;
-
     queryString += " (";
     queryString += cols.toString();
     queryString += ") ";
     queryString += "VALUES (";
     queryString += printQuestionMarks(vals.length);
     queryString += ") ";
-
     console.log(queryString);
-
     connection.query(queryString, vals, function(err, result) {
       if (err) {
         throw err;
       }
-
       cb(result);
     });
   },
+
   // An example of objColVals would be {name: panther, sleepy: true}
   updateOne: function(objColVals, condition, cb) {
     var queryString = "UPDATE " + TABLE_NAME;
-
     queryString += " SET ";
     queryString += objToSql(objColVals);
     queryString += " WHERE ";
     queryString += condition;
-
     console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
-
       cb(result);
     });
   }
