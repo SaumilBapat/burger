@@ -46,6 +46,7 @@ var orm = {
     var queryString = "SELECT * FROM " + TABLE_NAME + ";";
     console.log("process.env.DATABASE_URL: " + process.env.DATABASE_URL);
     console.log("queryString" + queryString);
+    cb("test");
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
